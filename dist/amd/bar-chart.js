@@ -1,28 +1,17 @@
-define(['exports', 'periscope-framework', 'lodash'], function (exports, _periscopeFramework, _lodash) {
+define(['exports', 'chartist', 'periscope-framework', 'chartist/dist/chartist.css!'], function (exports, _chartist, _periscopeFramework) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.ChartJs = undefined;
+  exports.BarChart = undefined;
 
-  var _ = _interopRequireWildcard(_lodash);
+  var _chartist2 = _interopRequireDefault(_chartist);
 
-  function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-      return obj;
-    } else {
-      var newObj = {};
-
-      if (obj != null) {
-        for (var key in obj) {
-          if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-        }
-      }
-
-      newObj.default = obj;
-      return newObj;
-    }
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
   }
 
   function _classCallCheck(instance, Constructor) {
@@ -73,24 +62,16 @@ define(['exports', 'periscope-framework', 'lodash'], function (exports, _perisco
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
-  var ChartJs = exports.ChartJs = function (_Chart) {
-    _inherits(ChartJs, _Chart);
+  var BarChart = exports.BarChart = function (_Chart) {
+    _inherits(BarChart, _Chart);
 
-    function ChartJs(widget) {
-      _classCallCheck(this, ChartJs);
+    function BarChart(settings) {
+      _classCallCheck(this, BarChart);
 
-      var _this = _possibleConstructorReturn(this, _Chart.call(this, widget));
-
-      _this.chartData = {
-        labels: [],
-        datasets: []
-      };
-      return _this;
+      return _possibleConstructorReturn(this, _Chart.call(this, settings));
     }
 
-    ChartJs.prototype.attached = function attached() {};
-
-    ChartJs.prototype.refresh = function refresh() {
+    BarChart.prototype.refresh = function refresh() {
       var _this2 = this;
 
       _Chart.prototype.refresh.call(this);
@@ -98,10 +79,11 @@ define(['exports', 'periscope-framework', 'lodash'], function (exports, _perisco
       query.serverSideFilter = this.dataFilter;
       this.dataSource.getData(query).then(function (dH) {
         _this2.chartData = _this2.mapData(dH.data, _this2.categoriesField);
+        _this2.createChart();
       });
     };
 
-    ChartJs.prototype.mapData = function mapData(data, categoryField) {
+    BarChart.prototype.mapData = function mapData(data, categoryField) {
       var lbl = [],
           d = [];
       _.forOwn(_.groupBy(data, categoryField), function (v, k) {
@@ -110,13 +92,25 @@ define(['exports', 'periscope-framework', 'lodash'], function (exports, _perisco
       });
       return {
         labels: lbl,
-        datasets: [{
-          fillColor: '#ee5315',
-          data: d
-        }] };
+        series: [d]
+      };
     };
 
-    _createClass(ChartJs, [{
+    BarChart.prototype.createChart = function createChart() {
+      var options = {
+        width: '100%',
+        height: this._calculateHeight(this.chartElement),
+        seriesBarDistance: 100,
+        reverseData: true,
+        horizontalBars: true,
+        axisY: {
+          offset: 85
+        }
+      };
+      if (this.chartElement) new _chartist2.default.Bar(this.chartElement, this.chartData, options);
+    };
+
+    _createClass(BarChart, [{
       key: 'chartData',
       get: function get() {
         return this._chartData;
@@ -126,6 +120,6 @@ define(['exports', 'periscope-framework', 'lodash'], function (exports, _perisco
       }
     }]);
 
-    return ChartJs;
+    return BarChart;
   }(_periscopeFramework.Chart);
 });

@@ -4,18 +4,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _chartJs = require("./chart-js");
+var _barChart = require("./bar-chart");
 
-Object.keys(_chartJs).forEach(function (key) {
+Object.keys(_barChart).forEach(function (key) {
   if (key === "default") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _chartJs[key];
+      return _barChart[key];
     }
   });
 });
 exports.configure = configure;
 function configure(aurelia) {
-  aurelia.globalResources("./chart-js");
+  aurelia.globalResources("./bar-chart");
 }

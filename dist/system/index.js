@@ -1,19 +1,19 @@
 "use strict";
 
-System.register(["./chart-js"], function (_export, _context) {
+System.register(["./bar-chart"], function (_export, _context) {
   return {
-    setters: [function (_chartJs) {
+    setters: [function (_barChart) {
       var _exportObj = {};
 
-      for (var _key in _chartJs) {
-        if (_key !== "default") _exportObj[_key] = _chartJs[_key];
+      for (var _key in _barChart) {
+        if (_key !== "default") _exportObj[_key] = _barChart[_key];
       }
 
       _export(_exportObj);
     }],
     execute: function () {
       function configure(aurelia) {
-        aurelia.globalResources("./chart-js");
+        aurelia.globalResources("./bar-chart");
       }
 
       _export("configure", configure);

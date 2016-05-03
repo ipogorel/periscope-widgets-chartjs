@@ -1,0 +1,9 @@
+.ct-series-a .ct-bar {
+  stroke: rgb(204, 83, 0) !important;
+  stroke-width: 15px;
+}
+
+.ct-chart-bar .ct-label{
+  font-size: 13px;
+  color:#333;
+}

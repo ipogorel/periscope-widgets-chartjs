@@ -1,16 +1,17 @@
 declare module 'periscope-widgets-chartjs' {
-  import * as _ from 'lodash';
+  import Chartist from 'chartist';
   import {
     Chart,
     Query
   } from 'periscope-framework';
-  export class ChartJs extends Chart {
-    constructor(widget: any);
+  import 'chartist/dist/chartist.css!';
+  export class BarChart extends Chart {
+    constructor(settings: any);
     chartData: any;
-    attached(): any;
     refresh(): any;
     mapData(data: any, categoryField: any): any;
+    createChart(): any;
   }
-  export * from 'periscope-widgets-chartjs/chart-js';
+  export * from 'periscope-widgets-chartjs/bar-chart';
   export function configure(aurelia: any): any;
 }

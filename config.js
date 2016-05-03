@@ -25,20 +25,12 @@ System.config({
     "babel": "npm:babel-core@5.1.13",
     "babel-runtime": "npm:babel-runtime@5.1.13",
     "bootstrap": "npm:bootstrap@3.3.6",
+    "chartist": "npm:chartist@0.9.7",
     "core-js": "npm:core-js@2.0.3",
-    "grofit/aurelia-chart": "github:grofit/aurelia-chart@0.1.1",
     "jquery": "npm:jquery@2.2.3",
     "lodash": "npm:lodash@4.11.1",
     "periscope-framework": "npm:periscope-framework@0.0.9",
     "swagger-client": "npm:swagger-client@2.1.14",
-    "github:grofit/aurelia-chart@0.1.1": {
-      "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-beta.1.2.0",
-      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-beta.1.2.0",
-      "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.2.2",
-      "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1.2.0",
-      "aurelia-templating": "npm:aurelia-templating@1.0.0-beta.1.2.2",
-      "chartjs": "github:chartjs/Chart.js@1.0.2"
-    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },

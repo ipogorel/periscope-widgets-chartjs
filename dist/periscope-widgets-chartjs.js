@@ -1,13 +1,10 @@
-import * as _ from 'lodash';
+import Chartist from 'chartist';
 import {Chart,Query} from 'periscope-framework';
 
-export class ChartJs extends Chart {
-  constructor(widget) {
-    super(widget);
-    this.chartData = {
-      labels:[],
-      datasets:[]
-    }
+import "chartist/dist/chartist.css!";
+export class BarChart extends Chart {
+  constructor(settings) {
+    super(settings);
   }
 
   get chartData(){
@@ -17,18 +14,15 @@ export class ChartJs extends Chart {
     this._chartData = value;
   }
 
-  attached(){
-  }
-
   refresh(){
     super.refresh();
     let query = new Query();
     query.serverSideFilter = this.dataFilter;
     this.dataSource.getData(query).then(dH=> {
       this.chartData = this.mapData(dH.data,this.categoriesField);
+      this.createChart();
     });
   }
-
 
   mapData(data, categoryField){
     let lbl = [], d = [];
@@ -38,19 +32,31 @@ export class ChartJs extends Chart {
     });
     return {
       labels:lbl,
-      datasets:[{
-        fillColor:'#ee5315',
-        data:d
-      }]};
+      series: [d]
+    };
   }
 
+  createChart(){
+    var options = {
+      width: '100%',
+      height: this._calculateHeight(this.chartElement),
+      seriesBarDistance: 100,
+      reverseData: true,
+      horizontalBars: true,
+      axisY: {
+        offset: 85
+      }
+    };
+    if (this.chartElement)
+      new Chartist.Bar(this.chartElement, this.chartData, options);
+  }
 }
 
 
-export * from './chart-js';
+export * from './bar-chart';
 
 export function configure(aurelia) {
   aurelia.globalResources(
-    "./chart-js"
+    "./bar-chart"
   );
 }

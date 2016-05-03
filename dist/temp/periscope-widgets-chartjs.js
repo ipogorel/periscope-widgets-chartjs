@@ -3,30 +3,32 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ChartJs = undefined;
+exports.BarChart = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _chartJs = require('./chart-js');
+var _barChart = require('./bar-chart');
 
-Object.keys(_chartJs).forEach(function (key) {
+Object.keys(_barChart).forEach(function (key) {
   if (key === "default") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _chartJs[key];
+      return _barChart[key];
     }
   });
 });
 exports.configure = configure;
 
-var _lodash = require('lodash');
+var _chartist = require('chartist');
 
-var _ = _interopRequireWildcard(_lodash);
+var _chartist2 = _interopRequireDefault(_chartist);
 
 var _periscopeFramework = require('periscope-framework');
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+require('chartist/dist/chartist.css!');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -34,24 +36,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ChartJs = exports.ChartJs = function (_Chart) {
-  _inherits(ChartJs, _Chart);
+var BarChart = exports.BarChart = function (_Chart) {
+  _inherits(BarChart, _Chart);
 
-  function ChartJs(widget) {
-    _classCallCheck(this, ChartJs);
+  function BarChart(settings) {
+    _classCallCheck(this, BarChart);
 
-    var _this = _possibleConstructorReturn(this, _Chart.call(this, widget));
-
-    _this.chartData = {
-      labels: [],
-      datasets: []
-    };
-    return _this;
+    return _possibleConstructorReturn(this, _Chart.call(this, settings));
   }
 
-  ChartJs.prototype.attached = function attached() {};
-
-  ChartJs.prototype.refresh = function refresh() {
+  BarChart.prototype.refresh = function refresh() {
     var _this2 = this;
 
     _Chart.prototype.refresh.call(this);
@@ -59,10 +53,11 @@ var ChartJs = exports.ChartJs = function (_Chart) {
     query.serverSideFilter = this.dataFilter;
     this.dataSource.getData(query).then(function (dH) {
       _this2.chartData = _this2.mapData(dH.data, _this2.categoriesField);
+      _this2.createChart();
     });
   };
 
-  ChartJs.prototype.mapData = function mapData(data, categoryField) {
+  BarChart.prototype.mapData = function mapData(data, categoryField) {
     var lbl = [],
         d = [];
     _.forOwn(_.groupBy(data, categoryField), function (v, k) {
@@ -71,13 +66,25 @@ var ChartJs = exports.ChartJs = function (_Chart) {
     });
     return {
       labels: lbl,
-      datasets: [{
-        fillColor: '#ee5315',
-        data: d
-      }] };
+      series: [d]
+    };
   };
 
-  _createClass(ChartJs, [{
+  BarChart.prototype.createChart = function createChart() {
+    var options = {
+      width: '100%',
+      height: this._calculateHeight(this.chartElement),
+      seriesBarDistance: 100,
+      reverseData: true,
+      horizontalBars: true,
+      axisY: {
+        offset: 85
+      }
+    };
+    if (this.chartElement) new _chartist2.default.Bar(this.chartElement, this.chartData, options);
+  };
+
+  _createClass(BarChart, [{
     key: 'chartData',
     get: function get() {
       return this._chartData;
@@ -87,9 +94,9 @@ var ChartJs = exports.ChartJs = function (_Chart) {
     }
   }]);
 
-  return ChartJs;
+  return BarChart;
 }(_periscopeFramework.Chart);
 
 function configure(aurelia) {
-  aurelia.globalResources("./chart-js");
+  aurelia.globalResources("./bar-chart");
 }

@@ -1,5 +1,5 @@
-export * from './chart-js';
+export * from './bar-chart';
 
 export function configure(aurelia) {
-  aurelia.globalResources("./chart-js");
+  aurelia.globalResources("./bar-chart");
 }

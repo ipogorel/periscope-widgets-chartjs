@@ -1,7 +1,7 @@
 'use strict';
 
-System.register(['periscope-framework', 'lodash'], function (_export, _context) {
-  var Chart, Query, _, _createClass, ChartJs;
+System.register(['chartist', 'chartist/dist/chartist.css!', 'periscope-framework'], function (_export, _context) {
+  var Chartist, Chart, Query, _createClass, BarChart;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -34,11 +34,11 @@ System.register(['periscope-framework', 'lodash'], function (_export, _context) 
   }
 
   return {
-    setters: [function (_periscopeFramework) {
+    setters: [function (_chartist) {
+      Chartist = _chartist.default;
+    }, function (_chartistDistChartistCss) {}, function (_periscopeFramework) {
       Chart = _periscopeFramework.Chart;
       Query = _periscopeFramework.Query;
-    }, function (_lodash) {
-      _ = _lodash;
     }],
     execute: function () {
       _createClass = function () {
@@ -59,24 +59,16 @@ System.register(['periscope-framework', 'lodash'], function (_export, _context) 
         };
       }();
 
-      _export('ChartJs', ChartJs = function (_Chart) {
-        _inherits(ChartJs, _Chart);
+      _export('BarChart', BarChart = function (_Chart) {
+        _inherits(BarChart, _Chart);
 
-        function ChartJs(widget) {
-          _classCallCheck(this, ChartJs);
+        function BarChart(settings) {
+          _classCallCheck(this, BarChart);
 
-          var _this = _possibleConstructorReturn(this, _Chart.call(this, widget));
-
-          _this.chartData = {
-            labels: [],
-            datasets: []
-          };
-          return _this;
+          return _possibleConstructorReturn(this, _Chart.call(this, settings));
         }
 
-        ChartJs.prototype.attached = function attached() {};
-
-        ChartJs.prototype.refresh = function refresh() {
+        BarChart.prototype.refresh = function refresh() {
           var _this2 = this;
 
           _Chart.prototype.refresh.call(this);
@@ -84,10 +76,11 @@ System.register(['periscope-framework', 'lodash'], function (_export, _context) 
           query.serverSideFilter = this.dataFilter;
           this.dataSource.getData(query).then(function (dH) {
             _this2.chartData = _this2.mapData(dH.data, _this2.categoriesField);
+            _this2.createChart();
           });
         };
 
-        ChartJs.prototype.mapData = function mapData(data, categoryField) {
+        BarChart.prototype.mapData = function mapData(data, categoryField) {
           var lbl = [],
               d = [];
           _.forOwn(_.groupBy(data, categoryField), function (v, k) {
@@ -96,13 +89,25 @@ System.register(['periscope-framework', 'lodash'], function (_export, _context) 
           });
           return {
             labels: lbl,
-            datasets: [{
-              fillColor: '#ee5315',
-              data: d
-            }] };
+            series: [d]
+          };
         };
 
-        _createClass(ChartJs, [{
+        BarChart.prototype.createChart = function createChart() {
+          var options = {
+            width: '100%',
+            height: this._calculateHeight(this.chartElement),
+            seriesBarDistance: 100,
+            reverseData: true,
+            horizontalBars: true,
+            axisY: {
+              offset: 85
+            }
+          };
+          if (this.chartElement) new Chartist.Bar(this.chartElement, this.chartData, options);
+        };
+
+        _createClass(BarChart, [{
           key: 'chartData',
           get: function get() {
             return this._chartData;
@@ -112,10 +117,10 @@ System.register(['periscope-framework', 'lodash'], function (_export, _context) 
           }
         }]);
 
-        return ChartJs;
+        return BarChart;
       }(Chart));
 
-      _export('ChartJs', ChartJs);
+      _export('BarChart', BarChart);
     }
   };
 });
