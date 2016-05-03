@@ -1,6 +1,6 @@
 # periscope-wigdets-datatables
 
-This library is part of the [Periscope] platform and contains GhartJs chart implementation
+This library is part of the [Periscope] platform and contains Chartist chart implementation
 
 
 ## Running The App
