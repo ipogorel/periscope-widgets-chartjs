@@ -1,4 +1,4 @@
-define(["exports", "./bar-chart"], function (exports, _barChart) {
+define(["exports", "./bar-chart", "./periscope-widget-chartjs.css!"], function (exports, _barChart) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {

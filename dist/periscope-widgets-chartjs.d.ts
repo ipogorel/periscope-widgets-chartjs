@@ -5,6 +5,7 @@ declare module 'periscope-widgets-chartjs' {
     Query
   } from 'periscope-framework';
   import 'chartist/dist/chartist.css!';
+  import './periscope-widget-chartjs.css!';
   export class BarChart extends Chart {
     constructor(settings: any);
     chartData: any;

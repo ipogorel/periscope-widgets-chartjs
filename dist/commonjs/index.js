@@ -16,6 +16,9 @@ Object.keys(_barChart).forEach(function (key) {
   });
 });
 exports.configure = configure;
+
+require("./periscope-widget-chartjs.css!");
+
 function configure(aurelia) {
   aurelia.globalResources("./bar-chart");
 }

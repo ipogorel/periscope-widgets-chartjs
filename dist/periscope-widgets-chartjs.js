@@ -39,7 +39,7 @@ export class BarChart extends Chart {
   createChart(){
     var options = {
       width: '100%',
-      height: this._calculateHeight(this.chartElement),
+      height: this.minHeight, //this._calculateHeight(this.chartElement),
       seriesBarDistance: 100,
       reverseData: true,
       horizontalBars: true,
@@ -54,6 +54,7 @@ export class BarChart extends Chart {
 
 
 export * from './bar-chart';
+import "./periscope-widget-chartjs.css!"
 
 export function configure(aurelia) {
   aurelia.globalResources(

@@ -28,6 +28,8 @@ var _periscopeFramework = require('periscope-framework');
 
 require('chartist/dist/chartist.css!');
 
+require('./periscope-widget-chartjs.css!');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73,7 +75,7 @@ var BarChart = exports.BarChart = function (_Chart) {
   BarChart.prototype.createChart = function createChart() {
     var options = {
       width: '100%',
-      height: this._calculateHeight(this.chartElement),
+      height: this.minHeight,
       seriesBarDistance: 100,
       reverseData: true,
       horizontalBars: true,

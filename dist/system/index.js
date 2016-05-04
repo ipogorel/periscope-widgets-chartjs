@@ -1,6 +1,6 @@
 "use strict";
 
-System.register(["./bar-chart"], function (_export, _context) {
+System.register(["./bar-chart", "./periscope-widget-chartjs.css!"], function (_export, _context) {
   return {
     setters: [function (_barChart) {
       var _exportObj = {};
@@ -10,7 +10,7 @@ System.register(["./bar-chart"], function (_export, _context) {
       }
 
       _export(_exportObj);
-    }],
+    }, function (_periscopeWidgetChartjsCss) {}],
     execute: function () {
       function configure(aurelia) {
         aurelia.globalResources("./bar-chart");
