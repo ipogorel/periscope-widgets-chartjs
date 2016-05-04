@@ -96,7 +96,7 @@ System.register(['chartist', 'chartist/dist/chartist.css!', 'periscope-framework
         BarChart.prototype.createChart = function createChart() {
           var options = {
             width: '100%',
-            height: this.minHeight,
+            height: this._calculateHeight(this.chartElement),
             seriesBarDistance: 100,
             reverseData: true,
             horizontalBars: true,

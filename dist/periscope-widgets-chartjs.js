@@ -39,7 +39,7 @@ export class BarChart extends Chart {
   createChart(){
     var options = {
       width: '100%',
-      height: this.minHeight, //this._calculateHeight(this.chartElement),
+      height: this._calculateHeight(this.chartElement), //this.minHeight, 
       seriesBarDistance: 100,
       reverseData: true,
       horizontalBars: true,
