@@ -2,6 +2,7 @@ import Chartist from 'chartist';
 import "chartist/dist/chartist.css!";
 import { Chart, Query } from 'periscope-framework';
 
+const DEFAULT_HEIGHT = 450;
 export let BarChart = class BarChart extends Chart {
   constructor(settings) {
     super(settings);
@@ -40,7 +41,7 @@ export let BarChart = class BarChart extends Chart {
   createChart() {
     var options = {
       width: '100%',
-      height: this._calculateHeight(this.chartElement),
+      height: this.minHeight ? this.minHeight : DEFAULT_HEIGHT,
       seriesBarDistance: 100,
       reverseData: true,
       horizontalBars: true,

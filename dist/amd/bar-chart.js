@@ -62,6 +62,8 @@ define(['exports', 'chartist', 'periscope-framework', 'chartist/dist/chartist.cs
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
+  var DEFAULT_HEIGHT = 450;
+
   var BarChart = exports.BarChart = function (_Chart) {
     _inherits(BarChart, _Chart);
 
@@ -99,7 +101,7 @@ define(['exports', 'chartist', 'periscope-framework', 'chartist/dist/chartist.cs
     BarChart.prototype.createChart = function createChart() {
       var options = {
         width: '100%',
-        height: this._calculateHeight(this.chartElement),
+        height: this.minHeight ? this.minHeight : DEFAULT_HEIGHT,
         seriesBarDistance: 100,
         reverseData: true,
         horizontalBars: true,

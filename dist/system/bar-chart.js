@@ -1,7 +1,7 @@
 'use strict';
 
 System.register(['chartist', 'chartist/dist/chartist.css!', 'periscope-framework'], function (_export, _context) {
-  var Chartist, Chart, Query, _createClass, BarChart;
+  var Chartist, Chart, Query, _createClass, DEFAULT_HEIGHT, BarChart;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -59,6 +59,8 @@ System.register(['chartist', 'chartist/dist/chartist.css!', 'periscope-framework
         };
       }();
 
+      DEFAULT_HEIGHT = 450;
+
       _export('BarChart', BarChart = function (_Chart) {
         _inherits(BarChart, _Chart);
 
@@ -96,7 +98,7 @@ System.register(['chartist', 'chartist/dist/chartist.css!', 'periscope-framework
         BarChart.prototype.createChart = function createChart() {
           var options = {
             width: '100%',
-            height: this._calculateHeight(this.chartElement),
+            height: this.minHeight ? this.minHeight : DEFAULT_HEIGHT,
             seriesBarDistance: 100,
             reverseData: true,
             horizontalBars: true,
