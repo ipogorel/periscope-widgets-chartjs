@@ -54,7 +54,7 @@ var BarChart = exports.BarChart = function (_Chart) {
 
     _Chart.prototype.refresh.call(this);
     var query = new _periscopeFramework.Query();
-    query.serverSideFilter = this.dataFilter;
+    query.filter = this.dataFilter;
     this.dataSource.getData(query).then(function (dH) {
       _this2.chartData = _this2.mapData(dH.data, _this2.categoriesField);
       _this2.createChart();
