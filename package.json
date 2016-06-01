@@ -40,7 +40,7 @@
       "aurelia-templating-resources": "^1.0.0-beta.1.1.3",
       "chartist": "^0.9.7",
       "lodash": "^4.11.1",
-      "periscope-framework": "^0.0.17"
+      "periscope-framework": "^0.0.18"
     },
     "devDependencies": {
       "babel": "^5.1.13",
