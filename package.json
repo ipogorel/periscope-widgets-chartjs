@@ -1,6 +1,6 @@
 {
   "name": "periscope-widgets-chartjs",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Perscope implementation of https://github.com/grofit/aurelia-chart ",
   "keywords": [
     "periscope",
