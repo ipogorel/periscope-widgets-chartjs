@@ -1,7 +1,7 @@
 'use strict';
 
-System.register(['chartist', 'chartist/dist/chartist.css!', 'periscope-framework'], function (_export, _context) {
-  var Chartist, Chart, Query, _createClass, DEFAULT_HEIGHT, BarChart;
+System.register(['chartist', 'chartist/dist/chartist.css!', 'periscope-framework', 'lodash'], function (_export, _context) {
+  var Chartist, Chart, Query, _, _createClass, DEFAULT_HEIGHT, BarChart;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -39,6 +39,8 @@ System.register(['chartist', 'chartist/dist/chartist.css!', 'periscope-framework
     }, function (_chartistDistChartistCss) {}, function (_periscopeFramework) {
       Chart = _periscopeFramework.Chart;
       Query = _periscopeFramework.Query;
+    }, function (_lodash) {
+      _ = _lodash;
     }],
     execute: function () {
       _createClass = function () {

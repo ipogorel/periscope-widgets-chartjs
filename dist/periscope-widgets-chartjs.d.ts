@@ -1,5 +1,6 @@
 declare module 'periscope-widgets-chartjs' {
   import Chartist from 'chartist';
+  import * as _ from 'lodash';
   import {
     Chart,
     Query

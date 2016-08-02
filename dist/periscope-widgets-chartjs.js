@@ -1,4 +1,5 @@
 import Chartist from 'chartist';
+import * as _ from 'lodash';
 import {Chart,Query} from 'periscope-framework';
 
 import "chartist/dist/chartist.css!";

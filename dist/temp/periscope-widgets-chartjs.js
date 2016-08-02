@@ -24,11 +24,17 @@ var _chartist = require('chartist');
 
 var _chartist2 = _interopRequireDefault(_chartist);
 
+var _lodash = require('lodash');
+
+var _ = _interopRequireWildcard(_lodash);
+
 var _periscopeFramework = require('periscope-framework');
 
 require('chartist/dist/chartist.css!');
 
 require('./periscope-widget-chartjs.css!');
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

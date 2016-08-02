@@ -1,6 +1,7 @@
 import Chartist from 'chartist';
 import "chartist/dist/chartist.css!";
 import { Chart, Query } from 'periscope-framework';
+import * as _ from 'lodash';
 
 const DEFAULT_HEIGHT = 450;
 export let BarChart = class BarChart extends Chart {
