@@ -1,6 +1,6 @@
 import Chartist from 'chartist';
 import * as _ from 'lodash';
-import {Chart,Query} from 'periscope-framework';
+import {Chart,Query,PeriscopeFactory} from 'periscope-framework';
 
 import "chartist/dist/chartist.css!";
 const DEFAULT_HEIGHT = 450;
@@ -59,6 +59,8 @@ export * from './bar-chart';
 import "./periscope-widget-chartjs.css!"
 
 export function configure(aurelia) {
+  let pf = aurelia.container.get(PeriscopeFactory);
+  pf.addReference(BarChart);
   aurelia.globalResources(
     "./bar-chart"
   );

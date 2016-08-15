@@ -3,7 +3,8 @@ declare module 'periscope-widgets-chartjs' {
   import * as _ from 'lodash';
   import {
     Chart,
-    Query
+    Query,
+    PeriscopeFactory
   } from 'periscope-framework';
   import 'chartist/dist/chartist.css!';
   import './periscope-widget-chartjs.css!';

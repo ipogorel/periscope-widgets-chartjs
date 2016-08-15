@@ -108,5 +108,7 @@ var BarChart = exports.BarChart = function (_Chart) {
 }(_periscopeFramework.Chart);
 
 function configure(aurelia) {
+  var pf = aurelia.container.get(_periscopeFramework.PeriscopeFactory);
+  pf.addReference(BarChart);
   aurelia.globalResources("./bar-chart");
 }
